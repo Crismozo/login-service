@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Service</title>
+</head>
+<body>
+
+    <h2>Registro</h2>
+    <input id="regUser" placeholder="Usuario">
+    <input id="regPass" type="password" placeholder="Contraseña">
+    <button onclick="register()">Registrar</button>
+
+    <h2>Login</h2>
+    <input id="logUser" placeholder="Usuario">
+    <input id="logPass" type="password" placeholder="Contraseña">
+    <button onclick="login()">Login</button>
+
+    <p id="respuesta"></p>
+
+    <script>
+        async function register() {
+            const usuario = document.getElementById("regUser").value;
+            const password = document.getElementById("regPass").value;
+
+            const res = await fetch("http://localhost:3000/api/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ usuario, password })
+            });
+
+            const data = await res.json();
+            document.getElementById("respuesta").innerText = data.mensaje;
+        }
+
+        async function login() {
+            const usuario = document.getElementById("logUser").value;
+            const password = document.getElementById("logPass").value;
+
+            const res = await fetch("http://localhost:3000/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ usuario, password })
+            });
+
+            const data = await res.json();
+            document.getElementById("respuesta").innerText = data.mensaje;
+        }
+    </script>
+
+</body>
+</html>
