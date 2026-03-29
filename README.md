@@ -25,7 +25,7 @@ npm install
 node server.js
 
 ## Autor
-Cristian Mozo
-Diego Alzate
-Elias Farak
-Juan Rodriguez 
+- Cristian Mozo
+- Diego Alzate
+- Elias Farak
+- Juan Rodriguez 
