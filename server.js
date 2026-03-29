@@ -1,23 +1,23 @@
-// Importamos las librerías necesarias
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // 
 
-// Creamos la aplicación
 const app = express();
 
-// Permite leer datos en formato JSON
+// CONFIGURACIÓN DE CORS
+app.use(cors({
+    origin: '*', // permite cualquier origen
+}));
+
 app.use(bodyParser.json());
 
-// Importamos las rutas
+// Rutas
 const authRoutes = require('./routes/auth');
-
-// Usamos las rutas
 app.use('/api', authRoutes);
 
-// Definimos el puerto
+// Puerto
 const PORT = 3000;
 
-// Encendemos el servidor
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:3000`);
 });

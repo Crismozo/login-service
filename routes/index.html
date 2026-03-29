@@ -5,16 +5,19 @@
 </head>
 <body>
 
+    <h1>Servicio de Login</h1>
+
     <h2>Registro</h2>
-    <input id="regUser" placeholder="Usuario">
-    <input id="regPass" type="password" placeholder="Contraseña">
+    <input id="regUser" placeholder="Usuario"><br><br>
+    <input id="regPass" type="password" placeholder="Contraseña"><br><br>
     <button onclick="register()">Registrar</button>
 
     <h2>Login</h2>
-    <input id="logUser" placeholder="Usuario">
-    <input id="logPass" type="password" placeholder="Contraseña">
+    <input id="logUser" placeholder="Usuario"><br><br>
+    <input id="logPass" type="password" placeholder="Contraseña"><br><br>
     <button onclick="login()">Login</button>
 
+    <h3>Respuesta:</h3>
     <p id="respuesta"></p>
 
     <script>
@@ -22,28 +25,44 @@
             const usuario = document.getElementById("regUser").value;
             const password = document.getElementById("regPass").value;
 
-            const res = await fetch("http://localhost:3000/api/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ usuario, password })
-            });
+            try {
+                const res = await fetch("http://localhost:3000/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ usuario, password })
+                });
 
-            const data = await res.json();
-            document.getElementById("respuesta").innerText = data.mensaje;
+                const data = await res.json();
+
+                document.getElementById("respuesta").innerText = data.mensaje;
+
+            } catch (error) {
+                document.getElementById("respuesta").innerText = "Error conectando con el servidor";
+            }
         }
 
         async function login() {
             const usuario = document.getElementById("logUser").value;
             const password = document.getElementById("logPass").value;
 
-            const res = await fetch("http://localhost:3000/api/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ usuario, password })
-            });
+            try {
+                const res = await fetch("http://localhost:3000/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ usuario, password })
+                });
 
-            const data = await res.json();
-            document.getElementById("respuesta").innerText = data.mensaje;
+                const data = await res.json();
+
+                document.getElementById("respuesta").innerText = data.mensaje;
+
+            } catch (error) {
+                document.getElementById("respuesta").innerText = "Error conectando con el servidor";
+            }
         }
     </script>
 
